@@ -59,7 +59,7 @@ func commandExists(cmd string) bool {
 	return err == nil
 }
 
-var addr = []string{""}
+var addr = ""
 var dir = ""
 
 func main() {
@@ -82,7 +82,7 @@ func main() {
 		panic(err)
 	}
 	d := flag.String("dir", wd, "directory to store application state in")
-	host := flag.String("upstream", "https://2dtts2j37mhny4ldp2pjp7iajvp5db426fk3dqtfcuih2w3eivja.b32.i2p/", "Third-party WebRTC chat host")
+	host := flag.String("upstream", "https://u7tcvf6hkftubxh3r7bdz4khekcknkkzeayliefetk2ej7lmimoq.b32.i2p", "Third-party WebRTC chat host")
 	hosted := flag.Bool("hosted", false, "Use third-party WebRTC chat host")
 	launch := flag.Bool("app", launch(), "Start the application")
 	tray := flag.Bool("tray", !isheadless.IsHeadless(), "Show the application running in the system tray")
@@ -90,11 +90,11 @@ func main() {
 	dir = *d
 	if !*hosted {
 		go func() {
-			addr[0] = server.Serve(e, *e.Turn.RealmString)
+			addr = server.Serve(e, *e.Turn.RealmString)
 			log.Println("Server started")
 		}()
 		for {
-			if addr[0] != "" {
+			if addr != "" {
 				break
 			}
 			time.Sleep(time.Second * 2)
@@ -103,7 +103,7 @@ func main() {
 		log.Println(addr)
 	}
 	if *hosted {
-		addr[0] = *host
+		addr = *host
 	}
 
 	go func() {
@@ -112,7 +112,7 @@ func main() {
 		}
 	}()
 	if *launch {
-		go goi2pbrowser.BrowseApp(dir, addr...)
+		go goi2pbrowser.BrowseApp(dir, addr)
 	}
 
 	sigs := make(chan os.Signal, 1)
@@ -139,9 +139,9 @@ func onReady() {
 		for {
 			select {
 			case <-mBrowse.ClickedCh:
-				go goi2pbrowser.BrowseApp(dir, addr...)
+				go goi2pbrowser.BrowseApp(dir, addr)
 			case <-mCopy.ClickedCh:
-				clipboard.WriteAll(addr[0])
+				clipboard.WriteAll(addr)
 			}
 			time.Sleep(time.Second)
 		}

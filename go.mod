@@ -32,6 +32,6 @@ require (
 	golang.org/x/sys v0.0.0-20220804214406-8e32c043e418 // indirect
 )
 
-replace github.com/yuukanoo/rtchat => github.com/eyedeekay/rtchat v0.0.0-20221005052743-ffcdf3afdf26
+replace github.com/yuukanoo/rtchat => github.com/eyedeekay/rtchat v0.0.0-20221005061805-7e77d25a2793
 
 replace github.com/artdarek/go-unzip => github.com/eyedeekay/go-unzip v0.0.0-20220914222511-f2936bba53c2

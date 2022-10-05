@@ -92,6 +92,7 @@ func main() {
 	if !*hosted {
 		go func() {
 			addr[0] = server.Serve(e, *e.Turn.RealmString)
+			defer server.Close()
 			log.Println("Server started")
 		}()
 		for {

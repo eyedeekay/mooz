@@ -68,13 +68,13 @@ func main() {
 			RealmString:    flag.String("realm", "mooz.i2p", "Realm used by the turn server."),
 			PublicIPString: flag.String("turn-ip", "127.0.0.1", "IP Address that TURN can be contacted on. Should be publicly available."),
 			PortInt:        flag.Int("turn-port", 3478, "Listening port for the TURN/STUN endpoint."),
+			I2p: server.I2pFlags{
+				SamIP:   flag.String("sam-ip", "127.0.0.1", "IP address on which the Simple Anonymous Messaging bridge can be reached"),
+				SamPort: flag.Int("sam-port", 7656, "Port on which the Simple Anonymous Messaging bridge can be reached"),
+			},
 		},
 		Web: server.WebFlags{
 			Port: flag.Int("http-port", 5000, "Web server listening port."),
-		},
-		I2p: server.I2pFlags{
-			SamIP:   flag.String("sam-ip", "127.0.0.1", "IP address on which the Simple Anonymous Messaging bridge can be reached"),
-			SamPort: flag.Int("sam-port", 7656, "Port on which the Simple Anonymous Messaging bridge can be reached"),
 		},
 	}
 	wd, err := os.Getwd()
@@ -88,7 +88,6 @@ func main() {
 	tray := flag.Bool("tray", !isheadless.IsHeadless(), "Show the application running in the system tray")
 	flag.Parse()
 	dir = *d
-	e.Turn.I2p = e.I2p
 	if !*hosted {
 		go func() {
 			addr[0] = server.Serve(e, *e.Turn.RealmString)

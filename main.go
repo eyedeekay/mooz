@@ -91,7 +91,6 @@ func main() {
 	if !*hosted {
 		go func() {
 			addr[0] = server.Serve(e, *e.Turn.RealmString)
-			defer server.Close()
 			log.Println("Server started")
 		}()
 		for {
@@ -100,6 +99,7 @@ func main() {
 			}
 			time.Sleep(time.Second * 2)
 		}
+		defer server.Close()
 		log.Println(addr)
 	}
 	if *hosted {

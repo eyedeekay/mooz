@@ -10,7 +10,7 @@
     // so a user can join as a guest only.
     try {
         stream = await navigator.mediaDevices.getUserMedia({
-            video: true,
+            video: false,
             audio: true,
         });
     } catch {

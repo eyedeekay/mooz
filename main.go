@@ -82,7 +82,7 @@ func main() {
 		panic(err)
 	}
 	d := flag.String("dir", wd, "directory to store application state in")
-	host := flag.String("upstream", "https://u7tcvf6hkftubxh3r7bdz4khekcknkkzeayliefetk2ej7lmimoq.b32.i2p", "Third-party WebRTC chat host")
+	host := flag.String("upstream", "https://moam7ks26jxodox6orfvcc5ypazvfmluramym6435pfechdd4sdq.b32.i2p", "Third-party WebRTC chat host")
 	hosted := flag.Bool("hosted", false, "Use third-party WebRTC chat host")
 	launch := flag.Bool("app", launch(), "Start the application")
 	tray := flag.Bool("tray", !isheadless.IsHeadless(), "Show the application running in the system tray")

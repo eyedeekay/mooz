@@ -18,17 +18,19 @@
     }
 
     // Update the local preview element source
-    document.querySelector('video.local').srcObject = stream;
+    document.querySelector('img.local').classList.add("me");
+    document.querySelector('img.local').src = "/static/toopie.png";
+    //srcObject = stream;
 
     // Let's open the websocket connection for this particular room
     const ws = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/ws/" + config.roomID, config.roomCred);
 
     // Upon close, show an alert and go back to the web root
-    ws.onclose = function() {        
-        for(const id in peers) {
+    ws.onclose = function() {
+        for (const id in peers) {
             peers[id].close();
         }
-        
+
         alert('communication closed, nothing to see anymore');
     }
 
@@ -36,11 +38,12 @@
         const msg = JSON.parse(e.data);
 
         console.info(msg);
-    
-        if(msg.joined) {
+
+        if (msg.joined) {
             // New user has joined, let's starts an RTCPeerConnection for this user
             // and make an offer.
             const peer = await createPeer(msg.joined.id);
+            console.warn("Peer: " + peer + " joined the room");
 
             peer.oniceconnectionstatechange = function() {
                 // TODO: handle connection state change and restart ice?
@@ -51,31 +54,31 @@
 
             sendOffer(msg.joined.id, peer);
         }
-    
-        if(msg.left) {
+
+        if (msg.left) {
             removePeer(msg.left.id);
         }
-    
-        if(msg.offer) {
+
+        if (msg.offer) {
             // An offer has been made by someone else, create an RTCPeerConnection
             // and sends an answer
             const peer = peers[msg.from] || await createPeer(msg.from);
             await peer.setRemoteDescription(msg.offer);
             const answer = await peer.createAnswer();
             await peer.setLocalDescription(answer);
-    
+
             ws.send(JSON.stringify({
                 answer,
                 to: msg.from,
             }));
         }
 
-        if(msg.answer) {
+        if (msg.answer) {
             const peer = peers[msg.from];
             peer.setRemoteDescription(msg.answer);
         }
 
-        if(msg.ice) {
+        if (msg.ice) {
             const peer = peers[msg.from];
             peer.addIceCandidate(msg.ice);
         }
@@ -95,7 +98,7 @@
     }
 
     function findVideoElement(id) {
-        return document.querySelector('video[data-id="'+id+'"]');
+        return document.querySelector('img[data-id="' + id + '"]');
     }
 
     /**
@@ -104,20 +107,21 @@
      */
     async function createPeer(id) {
         const peer = new RTCPeerConnection(config); // Config here comes from the html template
-        
+
         let videoEle = findVideoElement(id);
 
-        if(!videoEle) {
-            videoEle = document.createElement('video');
+        if (!videoEle) {
+            videoEle = document.createElement('img');
             videoEle.classList.add('videos__peer');
+            videoEle.classList.add(id);
             videoEle.dataset.id = id;
-            videoEle.autoplay = true;
+            //videoEle.autoplay = true;
             document.querySelector('.videos').appendChild(videoEle);
         }
 
         // Append our tracks if we have a valid stream.
-        if(stream) {
-            for(const track of stream.getTracks()) {
+        if (stream) {
+            for (const track of stream.getTracks()) {
                 peer.addTrack(track, stream);
             }
         }
@@ -125,17 +129,18 @@
         // When track are added in the other side, sets the video element src to
         // the stream in use.
         peer.ontrack = function(e) {
-            if(!e.streams.length) {
+            if (!e.streams.length) {
                 return;
             }
-
-            videoEle.srcObject = e.streams[0];
+            videoEle.src = "/static/toopie.png";
+            videoEle.classList.add(id);
+            videoEle.alt = "id: " + id;
         }
 
         // When trying to find available configuration, just forward the candidate
         // using the signaling channel.
         peer.onicecandidate = function(e) {
-            if(!e.candidate) {
+            if (!e.candidate) {
                 return;
             }
 

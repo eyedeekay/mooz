@@ -23,10 +23,20 @@
     </script>
 </head>
 <body>
-    <div class="videos">
-        <video class="local videos__peer" autoplay></video>
+    <div class="interface">
+        <div class="videos">
+            <img class="local videos__peer" src="/static/toopie.png"/>
+        </div>
+        <div class="messageHistoryArea"> 
+            <div class="panel panel-primary"> 
+                <div id="chatarea" class="panel-body text-left"></div> 
+            </div> 
+        </div>
+        <div class="inputMessageArea"> 
+                <input id="msgInput" type="text" placeholder="message" /> 
+                <button id="sendMsgBtn" class="btn-success btn">Send</button> 
+        </div>
     </div>
-
     <script type="text/javascript" src="/static/room.js"></script>
 </body>
 </html>

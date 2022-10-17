@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"time"
@@ -88,6 +89,8 @@ func main() {
 	tray := flag.Bool("tray", !isheadless.IsHeadless(), "Show the application running in the system tray")
 	flag.Parse()
 	dir = *d
+	startState(dir)
+	defer stopState(dir)
 	if !*hosted {
 		go func() {
 			addr = server.Serve(e, *e.Turn.RealmString)
@@ -120,6 +123,16 @@ func main() {
 	<-sigs
 
 	log.Println("Shutting down, goodbye 👋")
+}
+
+func startState(dir string) {
+	if _, err := os.Stat(filepath.Join(dir, "running")); err == nil {
+		os.Exit(0)
+	}
+}
+
+func stopState(dir string) {
+	os.RemoveAll(filepath.Join(dir, "running"))
 }
 
 func onReady() {

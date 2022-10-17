@@ -13,7 +13,7 @@ body {
     color: rgb(221, 221, 221);
     font-size: 1rem;
     line-height: 1.4rem;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .home {
@@ -63,19 +63,32 @@ body {
     transition: all 0.2s;
 }
 
-.videos {
-    display: grid;
+.interface {
+    display: flex;
+    flex-flow: column;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     height: 100vh;
     overflow: hidden;
+    border: rgb(213, 220, 108) 2px solid !important;
+}
+
+.videos {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    height: 85vh;
+    overflow: hidden;
+    border: rgb(213, 220, 108) 2px solid !important;
 }
 
 .videos__peer {
     height: 100%;
-    width: auto;
-    align-self: stretch;
-    justify-self: stretch;
+    width: 50%;
+    /*align-self: stretch;
+    justify-self: stretch;*/
+    border: rgb(213, 220, 108) 2px solid !important;
+    flex-grow: .25;
 }
+
 
 /** Let's regroup colors related stuff */
 
@@ -100,4 +113,33 @@ a {
 .home__button:focus {
     background-color: rgb(43, 43, 43);
     color: rgb(213, 220, 108);
+}
+
+.inputMessageArea {
+    height: 10vh;
+    display: flex;
+    margin-top: auto;
+}
+
+.messageHistoryArea {
+    flex-grow: .9;
+    display: flex;
+    height: 20vh;
+}
+
+#msgInput {
+    width: 90%;
+    background-color: rgb(43, 43, 43);
+    color: rgb(213, 220, 108);
+    border: rgb(155, 155, 155) 1px solid;
+    margin-left: .25%;
+}
+
+#sendMsgBtn {
+    width: 9%;
+    margin-left: .5%;
+    background-color: rgb(43, 43, 43);
+    color: rgb(221, 221, 221);
+    border: rgb(155, 155, 155) 1px solid;
+    border-radius: 0%;
 }

@@ -6,7 +6,7 @@ require (
 	fyne.io/systray v1.10.0
 	github.com/atotto/clipboard v0.1.4
 	github.com/christianhujer/isheadless v0.0.0-20181114123347-cbcc774d58b8
-	github.com/eyedeekay/go-i2pbrowser v0.0.0-20221005063656-0db06cb114f8
+	github.com/eyedeekay/go-i2pbrowser v0.0.0-20221007001231-df2721a26494
 	github.com/yuukanoo/rtchat v0.0.0-20200410072209-1f8cccac0104
 )
 

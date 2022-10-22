@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title></title>
+    <meta name="author" content="eyedeekay" />
+    <meta name="description" content="mooz" />
+    <meta name="keywords" content="trunk" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="showhider.css" />
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="#shownav">
+        Show navigation
+      </a>
+      <div id="shownav">
+        <div id="hidenav">
+          <ul>
+            <li>
+              <a href="..">
+                Up one level ^
+              </a>
+            </li>
+            <li>
+              <a href="index.html">
+                index
+              </a>
+            </li>
+          </ul>
+          <br>
+          <a href="#hidenav">
+            Hide Navigation
+          </a>
+        </div>
+      </div>
+    </div>
+    <a id="returnhome" href="/">
+      /
+    </a>
+    <h1>
+      <strong>
+        mooZ
+      </strong>
+      - Peer-to-Peer Voice Chat in the Browser, Over I2P
+    </h1>
+    <p>
+      <strong>
+        EXPERIMENTAL.
+      </strong>
+      <em>
+        Like really, really experimental
+      </em>
+      . This is an application
+      which sets up a WebRTC voice chat inside of I2P, with services for peer discovery
+      and TURN built in. Just running it and sharing the URL is enough to set up your own
+      group meetings entirely inside I2P(Peer discovery won&rsquo;t work outside of I2P, it is
+      configured to never contact the clearnet by building all connections through the
+      <a href="https://geti2p.net/en/docs/api/samv3">
+        SAMv3 API
+      </a>
+      ). It works in both TCP-like(I2P Streaming)
+      and UDP-like(I2P Datagram) modes, so if you have a SOCKS5 proxy configured which supports
+      UDP you can use repliable I2P Datagrams to incur less overhead.
+    </p>
+    <ul>
+      <li>
+        <a href="https://geti2p.net/en/docs/api/samv3">
+          Enable the SAMv3 API
+        </a>
+        .
+      </li>
+    </ul>
+    <h2>
+      <strong>
+        DISCLAIMER: It is
+        <em>
+          deeply ill advised
+        </em>
+        to use this software for anything right now
+      </strong>
+    </h2>
+    <pre><code class="language-sh">go build
+./mooz
+</code></pre>
+    <div id="sourcecode">
+      <span id="sourcehead">
+        <strong>
+          Get the source code:
+        </strong>
+      </span>
+      <ul>
+        <li>
+          <a href="https://github.com/eyedeekay/mooz.git">
+            Source Repository: (https://github.com/eyedeekay/mooz.git)
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <iframe src="https://snowflake.torproject.org/embed.html" width="320" height="240" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <div>
+      <a href="https://geti2p.net/">
+        <img src="i2plogo.png"></img>
+        I2P
+      </a>
+    </div>
+  </body>
+</html>

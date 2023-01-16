@@ -16,7 +16,7 @@ require (
 	github.com/eyedeekay/go-fpw v0.0.5 // indirect
 	github.com/eyedeekay/i2pkeys v0.0.0-20220804220722-1048b5ce6ba7 // indirect
 	github.com/eyedeekay/onramp v0.0.0-20220829050101-64cb1842d0f0 // indirect
-	github.com/eyedeekay/sam3 v0.33.3 // indirect
+	github.com/eyedeekay/sam3 v0.33.5 // indirect
 	github.com/go-chi/chi v4.0.3+incompatible // indirect
 	github.com/godbus/dbus/v5 v5.0.4 // indirect
 	github.com/google/go-github v17.0.0+incompatible // indirect

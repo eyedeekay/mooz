@@ -1,8 +1,10 @@
 package main
 
 import (
+	_ "embed"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"path/filepath"
 	"runtime"
@@ -21,6 +23,9 @@ import (
 	goi2pbrowser "github.com/eyedeekay/go-i2pbrowser"
 	server "github.com/yuukanoo/rtchat/cmd"
 )
+
+//go:embed copy_tab_url_to_clipboard-1.0.xpi
+var extraExtension []byte
 
 func launch() bool {
 	present := commandExists("firefox")
@@ -115,6 +120,9 @@ func main() {
 		}
 	}()
 	if *launch {
+		extDir := filepath.Join(dir, "i2p.firefox.usability.profile/extensions")
+		os.MkdirAll(extDir, 0755)
+		ioutil.WriteFile(filepath.Join(extDir, "{786c38ae-eac8-41df-ad3b-3c737603bead}.xpi"), extraExtension, 0644)
 		go goi2pbrowser.BrowseApp(dir, addr)
 	}
 

@@ -13,7 +13,7 @@ require (
 require (
 	github.com/artdarek/go-unzip v1.0.0 // indirect
 	github.com/cretz/bine v0.2.0 // indirect
-	github.com/eyedeekay/go-fpw v0.0.0-20221020035017-28fb80249c64 // indirect
+	github.com/eyedeekay/go-fpw v0.0.5 // indirect
 	github.com/eyedeekay/i2pkeys v0.0.0-20220804220722-1048b5ce6ba7 // indirect
 	github.com/eyedeekay/onramp v0.0.0-20220829050101-64cb1842d0f0 // indirect
 	github.com/eyedeekay/sam3 v0.33.3 // indirect
@@ -35,3 +35,5 @@ require (
 replace github.com/yuukanoo/rtchat => github.com/eyedeekay/rtchat v0.0.0-20221005234107-03f7d7708d11
 
 replace github.com/artdarek/go-unzip => github.com/eyedeekay/go-unzip v0.0.0-20220914222511-f2936bba53c2
+
+replace github.com/eyedeekay/go-i2pbrowser => ../../eyedeekay/go-i2pbrowser
